@@ -18,7 +18,7 @@ const CARDS = [
     notes: [
       "<b>PC에서 등록</b>해야 사용할 수 있습니다.",
       "등록 위치 : Claude 앱(또는 claude.ai) → <b>설정 → 기능 → 스킬</b> → 내려받은 zip 파일 업로드 (압축 풀지 말고 그대로)",
-      "<b>.hwpx 파일만</b> 지원합니다. .hwp 파일은 한글에서 ‘다른 이름으로 저장 → HWPX’로 바꿔서 사용하세요.",
+      "<b>.hwpx 파일만</b> 지원합니다. .hwp 파일은 생성할 수 없습니다.",
     ],
     action: "download",
     url: "files/skills/hwpx/suhyup_hwp_skill_ver1.zip",
