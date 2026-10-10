@@ -1,101 +1,67 @@
 /* =========================================================
- * 수협 AI 교육 랜딩 페이지 설정
- *  - 자료를 추가하려면 FILES 배열에 항목을 추가하세요.
- *  - url 이 비어 있으면 "준비 중" 으로 표시됩니다.
- *  - category: manual(매뉴얼) | practice(실습 파일) | etc(참고 자료)
+ * 수협 AI 교육 — 카드 목록
+ *  action:
+ *    - "download" : 파일 다운로드 (url 예: "files/매뉴얼.pdf")
+ *    - "link"     : 새 탭으로 열기
+ *    - "popup"    : 별도 창(팝업)으로 열기 (설문조사 등)
+ *  url 을 비워 두면 "준비 중" 카드로 표시됩니다.
  * ========================================================= */
-const CONFIG = {
-  // 설문조사 주소 (예: 구글폼, 네이버폼 등). 비워 두면 "준비 중" 안내가 표시됩니다.
-  surveyUrl: "",
-  surveyWindow: { width: 720, height: 860 },
+const CARDS = [
+  // { badge: "매뉴얼", title: "AI 교육 매뉴얼", desc: "교육 전반 사용 방법", action: "download", url: "files/manual.pdf" },
+];
 
-  files: [
-    { title: "AI 교육 사용자 매뉴얼", desc: "교육 전반 사용 방법 안내서", category: "manual", type: "pdf", size: "", url: "" },
-    { title: "시연 진행 가이드", desc: "단계별 시연 순서와 화면 설명", category: "manual", type: "pptx", size: "", url: "" },
-    { title: "실습 데이터 파일", desc: "실습에 사용하는 예제 데이터", category: "practice", type: "xlsx", size: "", url: "" },
-    { title: "실습 파일 묶음", desc: "실습용 파일 전체 압축본", category: "practice", type: "zip", size: "", url: "" },
-    { title: "프롬프트 예시 모음", desc: "업무별 활용 프롬프트 참고 자료", category: "etc", type: "docx", size: "", url: "" },
-  ],
+const POPUP_SIZE = { width: 720, height: 860 };
+
+const ICONS = {
+  download: '<path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/>',
+  link: '<path d="M7 17 17 7m0 0H9m8 0v8"/>',
+  popup: '<path d="M14 4h6v6m0-6-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
 };
 
-const CATEGORY_LABEL = { manual: "매뉴얼", practice: "실습 파일", etc: "참고 자료" };
-const DOWNLOAD_ICON =
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>';
-
 const escapeHtml = (s) =>
-  String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-function renderFiles(filter = "all") {
-  const grid = document.getElementById("fileGrid");
-  const list = CONFIG.files.filter((f) => filter === "all" || f.category === filter);
-
-  if (!list.length) {
-    grid.innerHTML = '<li class="empty">등록된 자료가 없습니다.</li>';
-    return;
-  }
-
-  grid.innerHTML = list
-    .map((f) => {
-      const type = (f.type || "etc").toLowerCase();
-      const iconClass = ["pdf", "pptx", "xlsx", "docx", "hwp", "hwpx", "zip"].includes(type) ? type : "etc";
-      const ready = Boolean(f.url);
-      const chips = [
-        `<span class="chip">${escapeHtml(CATEGORY_LABEL[f.category] || "자료")}</span>`,
-        f.size ? `<span class="chip">${escapeHtml(f.size)}</span>` : "",
-        ready ? "" : '<span class="chip">준비 중</span>',
-      ].join("");
-      const action = ready
-        ? `<a class="file-dl" href="${escapeHtml(f.url)}" download aria-label="${escapeHtml(f.title)} 다운로드">${DOWNLOAD_ICON}</a>`
-        : `<span class="file-dl" aria-label="준비 중" title="준비 중">${DOWNLOAD_ICON}</span>`;
-
-      return `
-        <li class="file-card${ready ? "" : " is-pending"}">
-          <span class="file-icon ${iconClass}">${escapeHtml(type.toUpperCase())}</span>
-          <div class="file-body">
-            <p class="file-title">${escapeHtml(f.title)}</p>
-            <p class="file-desc">${escapeHtml(f.desc || "")}</p>
-            <div class="file-meta">${chips}</div>
-          </div>
-          ${action}
-        </li>`;
-    })
-    .join("");
+function cardInner(c, ready) {
+  const icon = ICONS[c.action] || ICONS.link;
+  return `
+    <div class="card-top">
+      <span class="card-badge">${escapeHtml(ready ? c.badge || "자료" : "준비 중")}</span>
+      <span class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true">${icon}</svg></span>
+    </div>
+    <p class="card-title">${escapeHtml(c.title)}</p>
+    ${c.desc ? `<p class="card-desc">${escapeHtml(c.desc)}</p>` : ""}`;
 }
 
-function setupTabs() {
-  const tabs = document.querySelectorAll(".tab");
-  tabs.forEach((tab) =>
-    tab.addEventListener("click", () => {
-      tabs.forEach((t) => {
-        t.classList.toggle("is-active", t === tab);
-        t.setAttribute("aria-selected", String(t === tab));
-      });
-      renderFiles(tab.dataset.filter);
-    })
-  );
-}
-
-function openSurvey() {
-  const note = document.getElementById("surveyNote");
-  if (!CONFIG.surveyUrl) {
-    note.hidden = false;
-    document.getElementById("survey").scrollIntoView({ behavior: "smooth", block: "center" });
+function renderCards() {
+  const grid = document.getElementById("cardGrid");
+  if (!CARDS.length) {
+    grid.innerHTML = '<li class="empty">자료가 곧 추가됩니다.</li>';
     return;
   }
-  const { width, height } = CONFIG.surveyWindow;
+  grid.innerHTML = CARDS.map((c, i) => {
+    const ready = Boolean(c.url);
+    const url = escapeHtml(c.url);
+    let el;
+    if (!ready) el = `<div class="card is-pending">${cardInner(c, false)}</div>`;
+    else if (c.action === "download") el = `<a class="card" href="${url}" download>${cardInner(c, true)}</a>`;
+    else if (c.action === "popup") el = `<button class="card" type="button" data-popup="${i}">${cardInner(c, true)}</button>`;
+    else el = `<a class="card" href="${url}" target="_blank" rel="noopener">${cardInner(c, true)}</a>`;
+    return `<li>${el}</li>`;
+  }).join("");
+}
+
+function openPopup(url) {
+  const { width, height } = POPUP_SIZE;
   const left = Math.max(0, (window.screen.width - width) / 2);
   const top = Math.max(0, (window.screen.height - height) / 2);
-  const win = window.open(
-    CONFIG.surveyUrl,
-    "suhyup_survey",
-    `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
-  );
-  // 팝업이 차단되면 새 탭으로 엽니다.
-  if (!win) window.open(CONFIG.surveyUrl, "_blank", "noopener");
+  const win = window.open(url, "suhyup_popup", `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`);
+  if (!win) window.open(url, "_blank", "noopener"); // 팝업 차단 시 새 탭
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderFiles();
-  setupTabs();
-  document.querySelectorAll("[data-open-survey]").forEach((b) => b.addEventListener("click", openSurvey));
+  renderCards();
+  document.getElementById("cardGrid").addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-popup]");
+    if (btn) openPopup(CARDS[Number(btn.dataset.popup)].url);
+  });
 });
