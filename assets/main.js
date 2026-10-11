@@ -23,6 +23,18 @@ const CARDS = [
     action: "download",
     url: "files/skills/hwpx/suhyup_hwp_skill_ver1.zip",
   },
+  {
+    badge: "시연",
+    title: "면세유 가격 비교",
+    desc: "오늘의 면세유 단가(경유·휘발유)를 입력하면 시장가격과 L당 비교해 보여주는 시연 페이지입니다.",
+    notes: [
+      "비교 대상 : <b>주유소 평균가</b>(오피넷), <b>국제 도매가·국제유가</b>, <b>환율</b>",
+      "공공 API 데이터를 <b>매시간 자동 수집</b>해 반영합니다.",
+    ],
+    action: "link",
+    buttonLabel: "시연 페이지 열기",
+    url: "https://hosang78.github.io/oil/",
+  },
 ];
 
 const POPUP_SIZE = { width: 720, height: 860 };
