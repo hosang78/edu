@@ -9,3 +9,4 @@
 - 파일은 `files/` 아래 항목별 하위 폴더로 관리
   - `files/skills/hwpx/` — 한글(HWPX) 문서 작성 스킬 (버전 교체 방법은 폴더 안 README 참고)
   - `files/prompt-generator/` — 수협 프롬프트 생성기 + 도움말
+  - `files/image-prompt/` — 수협 AI 이미지 프롬프트 메이커 + 매뉴얼

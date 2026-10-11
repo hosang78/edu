@@ -54,6 +54,23 @@ const CARDS = [
       { label: "도움말", action: "download", url: "files/prompt-generator/suhyup-prompt-generator_v3.09_manual.html" },
     ],
   },
+  {
+    badge: "업무 도구",
+    title: "수협 AI 이미지 프롬프트 메이커",
+    version: "ver1",
+    date: "26.10.11",
+    desc: "원하는 조건을 고르기만 하면 이미지 생성 AI에 넣을 프롬프트를 자동으로 만들어 주는 도구입니다.",
+    notes: [
+      "사용 순서 : <b>생성 AI 선택 → 이미지 주제 입력 → 조건 선택 → 프롬프트 복사</b>",
+      "스타일·분위기·구도·색감을 <b>예시 이미지로 보고 선택</b>하고, 어종·어구·어선 등 <b>수산 특화 요소</b>도 추가할 수 있습니다.",
+      "ChatGPT, 웍스AI, Gemini 등에서 사용할 수 있습니다.",
+      "내려받은 HTML 파일을 <b>더블클릭하면 브라우저에서 바로 실행</b>됩니다. (설치 불필요)",
+    ],
+    buttons: [
+      { label: "프로그램", action: "download", url: "files/image-prompt/Sh_Image_Generator_ver1.html" },
+      { label: "매뉴얼", action: "download", url: "files/image-prompt/suhyup_ai_image_prompt_manual.html" },
+    ],
+  },
 ];
 
 const POPUP_SIZE = { width: 720, height: 860 };
