@@ -8,3 +8,4 @@
   - `url`이 비어 있으면 "준비 중"으로 표시
 - 파일은 `files/` 아래 항목별 하위 폴더로 관리
   - `files/skills/hwpx/` — 한글(HWPX) 문서 작성 스킬 (버전 교체 방법은 폴더 안 README 참고)
+  - `files/prompt-generator/` — 수협 프롬프트 생성기 + 도움말

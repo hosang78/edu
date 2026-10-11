@@ -6,6 +6,7 @@
  *    - "popup"    : 별도 창(팝업)으로 열기 (설문조사 등)
  *  version / date : 버전·등록일 표시 (선택)
  *  notes          : 카드 안에 보여줄 안내 문구 목록 (선택)
+ *  buttons        : 버튼이 여러 개일 때 [{ label, action, url }] 목록 (선택)
  *  url 을 비워 두면 "준비 중" 카드로 표시됩니다.
  * ========================================================= */
 const CARDS = [
@@ -36,6 +37,23 @@ const CARDS = [
     buttonLabel: "시연 페이지 열기",
     url: "https://hosang78.github.io/oil/",
   },
+  {
+    badge: "업무 도구",
+    title: "수협 프롬프트 생성기",
+    version: "v3.09",
+    date: "26.10.11",
+    desc: "할 일을 고르고 내용을 적으면, AI에게 정확하게 일을 맡기는 요청문(프롬프트)을 만들어 주는 도구입니다.",
+    notes: [
+      "사용 순서 : <b>할 일 고르기 → 내용 입력·옵션 선택 → 복사해 AI에 붙여넣기</b>",
+      "보고서·공문·회의록·메일·번역·엑셀 수식 등 <b>업무 유형별</b>로 제공합니다.",
+      "내려받은 HTML 파일을 <b>더블클릭하면 브라우저에서 바로 실행</b>됩니다. (설치 불필요)",
+      "사용 방법은 <b>도움말</b>을 함께 내려받아 확인하세요.",
+    ],
+    buttons: [
+      { label: "생성기", action: "download", url: "files/prompt-generator/suhyup-prompt-generator_v3.09.html" },
+      { label: "도움말", action: "download", url: "files/prompt-generator/suhyup-prompt-generator_v3.09_manual.html" },
+    ],
+  },
 ];
 
 const POPUP_SIZE = { width: 720, height: 860 };
@@ -50,12 +68,20 @@ const ACTION_LABEL = { download: "다운로드", link: "바로가기", popup: "�
 const escapeHtml = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-function renderCard(c, i) {
-  const ready = Boolean(c.url);
-  const action = ICONS[c.action] ? c.action : "link";
+function renderButton(b) {
+  if (!b.url) return `<span class="card-btn is-disabled">준비 중</span>`;
+  const action = ICONS[b.action] ? b.action : "link";
   const icon = `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[action]}</svg>`;
-  const url = escapeHtml(c.url);
-  const label = escapeHtml(c.buttonLabel || ACTION_LABEL[action]);
+  const url = escapeHtml(b.url);
+  const label = escapeHtml(b.label || ACTION_LABEL[action]);
+  if (action === "download") return `<a class="card-btn" href="${url}" download>${icon}${label}</a>`;
+  if (action === "popup") return `<button class="card-btn" type="button" data-popup="${url}">${icon}${label}</button>`;
+  return `<a class="card-btn" href="${url}" target="_blank" rel="noopener">${icon}${label}</a>`;
+}
+
+function renderCard(c) {
+  const buttons = c.buttons?.length ? c.buttons : [{ label: c.buttonLabel, action: c.action, url: c.url }];
+  const ready = buttons.some((b) => b.url);
 
   const meta = [
     c.version ? `<span class="meta-chip">${escapeHtml(c.version)}</span>` : "",
@@ -63,12 +89,6 @@ function renderCard(c, i) {
   ].join("");
   // notes 는 이 파일에서 직접 작성하는 고정 문구이므로 <b> 강조를 허용합니다.
   const notes = c.notes?.length ? `<ul class="card-notes">${c.notes.map((n) => `<li>${n}</li>`).join("")}</ul>` : "";
-
-  let button;
-  if (!ready) button = `<span class="card-btn is-disabled">준비 중</span>`;
-  else if (action === "download") button = `<a class="card-btn" href="${url}" download>${icon}${label}</a>`;
-  else if (action === "popup") button = `<button class="card-btn" type="button" data-popup="${i}">${icon}${label}</button>`;
-  else button = `<a class="card-btn" href="${url}" target="_blank" rel="noopener">${icon}${label}</a>`;
 
   return `
     <li class="card${ready ? "" : " is-pending"}">
@@ -79,7 +99,7 @@ function renderCard(c, i) {
       <h2 class="card-title">${escapeHtml(c.title)}</h2>
       ${c.desc ? `<p class="card-desc">${escapeHtml(c.desc)}</p>` : ""}
       ${notes}
-      <div class="card-actions">${button}</div>
+      <div class="card-actions">${buttons.map(renderButton).join("")}</div>
     </li>`;
 }
 
@@ -100,6 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCards();
   document.getElementById("cardGrid").addEventListener("click", (e) => {
     const btn = e.target.closest("[data-popup]");
-    if (btn) openPopup(CARDS[Number(btn.dataset.popup)].url);
+    if (btn) openPopup(btn.dataset.popup);
   });
 });
