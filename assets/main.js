@@ -71,6 +71,22 @@ const CARDS = [
       { label: "매뉴얼", action: "download", url: "files/image-prompt/suhyup_ai_image_prompt_manual.html" },
     ],
   },
+  {
+    badge: "시연",
+    title: "수협 익명 채팅방",
+    date: "26.10.12",
+    desc: "회원가입 없이 비밀번호로 입장해 랜덤 닉네임으로 대화하는 사내 익명 채팅방 시연입니다.",
+    notes: [
+      "입장 비밀번호는 <b>교육 시간에 안내</b>합니다.",
+      "첫 접속 시 서버가 깨어나는 데 <b>30초~1분</b> 정도 걸릴 수 있습니다.",
+      "<b>GitHub</b> : 채팅방 프로그램(소스코드)을 보관하는 저장소",
+      "<b>Render</b> : GitHub의 코드를 가져와 인터넷에서 접속할 수 있게 실행해 주는 서버",
+      "<b>Neon</b> : 채팅 메시지를 저장하는 클라우드 데이터베이스",
+    ],
+    action: "link",
+    buttonLabel: "채팅방 입장",
+    url: "https://sh-poc-chat.onrender.com/",
+  },
 ];
 
 const POPUP_SIZE = { width: 720, height: 860 };
