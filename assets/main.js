@@ -14,15 +14,15 @@ const CARDS = [
     badge: "Claude 스킬",
     title: "한글(HWPX) 문서 작성 스킬",
     desc: "Claude가 수협 양식의 한글 보고서·공문을 HWPX 파일로 만들어 주는 스킬입니다.",
-    version: "ver1",
-    date: "26.10.10",
+    version: "ver2",
+    date: "26.10.21",
     notes: [
       "<b>PC에서 등록</b>해야 사용할 수 있습니다.",
       "등록 위치 : Claude 앱(또는 claude.ai) → <b>설정 → 기능 → 스킬</b> → 내려받은 zip 파일 업로드 (압축 풀지 말고 그대로)",
       "<b>.hwpx 파일만</b> 지원합니다. .hwp 파일은 생성할 수 없습니다.",
     ],
     action: "download",
-    url: "files/skills/hwpx/suhyup_hwp_skill_ver1.zip",
+    url: "files/skills/hwpx/suhyup_hwp_skill_ver2.zip",
   },
   {
     badge: "시연",

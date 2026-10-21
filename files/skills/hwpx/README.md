@@ -5,7 +5,8 @@
 ## 버전 이력
 | 버전 | 등록일 | 파일 |
 |------|--------|------|
-| ver1 | 26.10.10 | suhyup_hwp_skill_ver1.zip |
+| ver1 | 26.10.10 | suhyup_hwp_skill_ver1.zip (교체됨, git 이력에 보관) |
+| ver2 | 26.10.21 | suhyup_hwp_skill_ver2.zip |
 
 ## 새 버전 올리는 방법 (예: ver2)
 1. 이 폴더에 `suhyup_hwp_skill_ver2.zip` 추가
