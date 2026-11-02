@@ -7,22 +7,29 @@
  *  version / date : 버전·등록일 표시 (선택)
  *  notes          : 카드 안에 보여줄 안내 문구 목록 (선택)
  *  buttons        : 버튼이 여러 개일 때 [{ label, action, url }] 목록 (선택)
+ *  evenButtons    : true 면 버튼을 모두 같은 모양으로 표시 (선택 항목이 대등할 때)
  *  url 을 비워 두면 "준비 중" 카드로 표시됩니다.
  * ========================================================= */
 const CARDS = [
   {
-    badge: "Claude 스킬",
+    badge: "AI 스킬",
     title: "한글(HWPX) 문서 작성 스킬",
-    desc: "Claude가 수협 양식의 한글 보고서·공문을 HWPX 파일로 만들어 주는 스킬입니다.",
+    desc: "AI가 수협 양식의 한글 보고서·공문을 HWPX 파일로 만들어 주는 스킬입니다. 사용하는 AI에 맞는 파일을 내려받으세요.",
     version: "ver2",
-    date: "26.10.21",
+    date: "26.11.02",
     notes: [
-      "<b>PC에서 등록</b>해야 사용할 수 있습니다.",
-      "등록 위치 : Claude 앱(또는 claude.ai) → <b>설정 → 기능 → 스킬</b> → 내려받은 zip 파일 업로드 (압축 풀지 말고 그대로)",
+      "<b>PC에서 등록</b>해야 사용할 수 있습니다. (zip 파일은 압축 풀지 말고 그대로 업로드)",
+      "<b>Claude</b> : 설정 → Skills → 추가 → Skill 업로드",
+      "<b>ChatGPT</b> : 플러그인 → 스킬 → 추가 → 컴퓨터에서 업로드",
+      "<b>Gemini</b> : 설정 → 스킬 → 만들기 → 업로드하기",
       "<b>.hwpx 파일만</b> 지원합니다. .hwp 파일은 생성할 수 없습니다.",
     ],
-    action: "download",
-    url: "files/skills/hwpx/suhyup_hwp_skill_ver2.zip",
+    evenButtons: true,
+    buttons: [
+      { label: "Claude", action: "download", url: "files/skills/hwpx/hwpx_skill_claude.zip" },
+      { label: "ChatGPT", action: "download", url: "files/skills/hwpx/hwpx_skill_chatgpt.zip" },
+      { label: "Gemini", action: "download", url: "files/skills/hwpx/hwpx_skill_gemini.zip" },
+    ],
   },
   {
     badge: "시연",
@@ -132,7 +139,7 @@ function renderCard(c) {
       <h2 class="card-title">${escapeHtml(c.title)}</h2>
       ${c.desc ? `<p class="card-desc">${escapeHtml(c.desc)}</p>` : ""}
       ${notes}
-      <div class="card-actions">${buttons.map(renderButton).join("")}</div>
+      <div class="card-actions${c.evenButtons ? " is-even" : ""}">${buttons.map(renderButton).join("")}</div>
     </li>`;
 }
 

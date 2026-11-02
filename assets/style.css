@@ -93,9 +93,13 @@ svg { display: block; }
   background: linear-gradient(90deg, #0ea5e9, #2563eb); color: #fff;
   transition: filter .2s, transform .15s;
 }
+.card-actions.is-even { gap: 8px; }
+.card-actions.is-even .card-btn { padding-inline: 6px; gap: 6px; }
+@media (max-width: 480px) { .card-actions.is-even .card-btn svg { display: none; } }
+.card-actions.is-even .card-btn,
 .card-btn + .card-btn { background: rgba(56, 189, 248, .12); color: var(--sea-soft); border: 1px solid rgba(56, 189, 248, .35); }
 .card-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
-.card-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.card-btn svg { flex: none; width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .card-btn.is-disabled { background: rgba(142, 166, 189, .15); color: var(--text-soft); cursor: default; }
 .card-btn.is-disabled:hover { filter: none; transform: none; }
 .card.is-pending { opacity: .6; }
