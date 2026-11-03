@@ -94,6 +94,21 @@ const CARDS = [
     buttonLabel: "채팅방 입장",
     url: "https://sh-poc-chat.onrender.com/",
   },
+  {
+    badge: "시연",
+    title: "회원조합 아이디어 상품 설문",
+    date: "26.11.03",
+    desc: "회원조합 상품 중 마음에 드는 상품을 골라 투표하고, 결과를 실시간 통계로 확인하는 모바일 설문 시연입니다.",
+    notes: [
+      "조합 <b>개별상품 3개</b>, <b>복합상품 2개</b>를 선택해 제출합니다.",
+      "입장 비밀번호는 <b>교육 시간에 안내</b>합니다.",
+      "통계 : 개별상품 TOP 10, 복합상품 TOP 5, 시간대·일자별 응답 수",
+      "<b>GitHub Pages</b>(화면) + <b>Neon</b>(응답 저장 데이터베이스)으로 만들었습니다.",
+    ],
+    action: "link",
+    buttonLabel: "설문 참여하기",
+    url: "https://hosang78.github.io/vote/",
+  },
 ];
 
 const POPUP_SIZE = { width: 720, height: 860 };
