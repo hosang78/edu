@@ -109,6 +109,21 @@ const CARDS = [
     buttonLabel: "설문 참여하기",
     url: "https://hosang78.github.io/vote/",
   },
+  {
+    badge: "시연",
+    title: "해양수산도감",
+    date: "26.11.08",
+    desc: "주요 수산물 235종을 휴대폰에서 검색하고 쉬운 설명과 그림으로 찾아보는 웹 도감입니다.",
+    notes: [
+      "이름 검색, <b>그룹·해역 필터</b>, 종별 상세 설명과 <b>원문 보기</b>를 제공합니다.",
+      "자료 : 국립해양생물자원관 <b>해양생물종정보</b>(공공데이터포털, 26.11.07 기준)",
+      "<b>Claude</b>가 설명 정리와 앱 개발, <b>ChatGPT</b>가 도감 그림 235장을 만들었습니다.",
+      "설명·그림은 참고용이며 실제와 다를 수 있습니다.",
+    ],
+    action: "link",
+    buttonLabel: "도감 열기",
+    url: "https://hosang78.github.io/susan/",
+  },
 ];
 
 const POPUP_SIZE = { width: 720, height: 860 };
