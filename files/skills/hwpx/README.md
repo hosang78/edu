@@ -14,6 +14,7 @@
 | ver1 | 26.10.10 | Claude용 1종 (git 이력에 보관) |
 | ver2 | 26.10.21 | Claude용 교체 |
 | ver2 | 26.11.02 | Claude·ChatGPT·Gemini용 3종으로 확대 (Claude용은 26.10.21 파일과 동일) |
+| ver2 | 26.11.14 | ChatGPT용 파일 교체 |
 
 ## 새 버전 올리는 방법
 1. 이 폴더의 해당 AI용 zip 파일을 같은 이름으로 교체

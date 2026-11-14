@@ -16,7 +16,7 @@ const CARDS = [
     title: "한글(HWPX) 문서 작성 스킬",
     desc: "AI가 수협 양식의 한글 보고서·공문을 HWPX 파일로 만들어 주는 스킬입니다. 사용하는 AI에 맞는 파일을 내려받으세요.",
     version: "ver2",
-    date: "26.11.02",
+    date: "26.11.14",
     notes: [
       "<b>PC에서 등록</b>해야 사용할 수 있습니다. (zip 파일은 압축 풀지 말고 그대로 업로드)",
       "<b>Claude</b> : 설정 → Skills → 추가 → Skill 업로드",
