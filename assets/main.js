@@ -158,13 +158,15 @@ const ACTION_LABEL = { download: "다운로드", link: "바로가기", popup: "�
 const escapeHtml = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-function renderButton(b) {
+function renderButton(b, cacheKey) {
   if (!b.url) return `<span class="card-btn is-disabled">준비 중</span>`;
   const action = ICONS[b.action] ? b.action : "link";
   const icon = `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[action]}</svg>`;
   const url = escapeHtml(b.url);
   const label = escapeHtml(b.label || ACTION_LABEL[action]);
-  if (action === "download") return `<a class="card-btn" href="${url}" download>${icon}${label}</a>`;
+  // 같은 이름으로 파일을 교체해도 예전 파일이 캐시에서 내려오지 않도록 등록일을 붙입니다.
+  const href = cacheKey && !/^https?:/.test(b.url) ? `${url}?v=${encodeURIComponent(cacheKey)}` : url;
+  if (action === "download") return `<a class="card-btn" href="${href}" download>${icon}${label}</a>`;
   if (action === "popup") return `<button class="card-btn" type="button" data-popup="${url}">${icon}${label}</button>`;
   return `<a class="card-btn" href="${url}" target="_blank" rel="noopener">${icon}${label}</a>`;
 }
@@ -189,7 +191,7 @@ function renderCard(c) {
       <h2 class="card-title">${escapeHtml(c.title)}</h2>
       ${c.desc ? `<p class="card-desc">${escapeHtml(c.desc)}</p>` : ""}
       ${notes}
-      <div class="card-actions${c.evenButtons ? " is-even" : ""}">${buttons.map(renderButton).join("")}</div>
+      <div class="card-actions${c.evenButtons ? " is-even" : ""}">${buttons.map((b) => renderButton(b, c.date)).join("")}</div>
     </li>`;
 }
 
