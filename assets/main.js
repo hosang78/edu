@@ -144,6 +144,22 @@ const CARDS = [
     buttonLabel: "도감 열기",
     url: "https://hosang78.github.io/susan/",
   },
+  {
+    badge: "게임",
+    title: "수협 오늘의 월척 · 점심 아케이드",
+    date: "26.11.19",
+    desc: "커피·점심 쏘기, 회의록 작성 등 오늘의 당첨자(월척)를 바다 친구들과 함께 미니게임으로 정하는 게임입니다.",
+    notes: [
+      "참가 인원(<b>2~20명</b>)과 당첨 미션만 고르면 바로 시작합니다.",
+      "<b>월척 낚시·심해 핀볼·바다 친구 레이스·복어 폭탄</b> 등 미니게임 9종",
+      "결과는 공정한 난수로 정하고, <b>결과 이미지·글 복사</b>로 단톡방에 공유할 수 있습니다.",
+      "회의실 TV용 <b>크게 보기</b>를 지원합니다.",
+    ],
+    buttons: [
+      { label: "바로 하기", action: "link", url: "files/games/wolchuk/suhyup_wolchuk_arcade.html" },
+      { label: "다운로드", action: "download", url: "files/games/wolchuk/suhyup_wolchuk_arcade.html" },
+    ],
+  },
 ];
 
 const POPUP_SIZE = { width: 720, height: 860 };
