@@ -11,4 +11,5 @@
   - `files/skills/hwp-reader/` — 한글 문서 읽기 스킬(HWP 리더) Claude·ChatGPT·Gemini용
   - `files/prompt-generator/` — 수협 프롬프트 생성기 + 도움말
   - `files/image-prompt/` — 수협 AI 이미지 프롬프트 메이커 + 매뉴얼
+  - `files/pii-cleaner/` — 수협 개인정보 클리너 (zip)
   - `files/games/wolchuk/` — 수협 오늘의 월척 · 점심 아케이드 (게임)
