@@ -119,19 +119,6 @@ const CARDS = [
   },
   {
     badge: "시연",
-    title: "면세유 가격 비교",
-    date: "26.10.11",
-    desc: "오늘의 면세유 단가(경유·휘발유)를 입력하면 시장가격과 L당 비교해 보여주는 시연 페이지입니다.",
-    notes: [
-      "비교 대상 : <b>주유소 평균가</b>(오피넷), <b>국제 도매가·국제유가</b>, <b>환율</b>",
-      "공공 API 데이터를 <b>매시간 자동 수집</b>해 반영합니다.",
-    ],
-    action: "link",
-    buttonLabel: "시연 페이지 열기",
-    url: "https://hosang78.github.io/oil/",
-  },
-  {
-    badge: "시연",
     title: "회원조합 아이디어 상품 설문",
     date: "26.11.03",
     desc: "회원조합 상품 중 마음에 드는 상품을 골라 투표하고, 결과를 실시간 통계로 확인하는 모바일 설문 시연입니다.",
@@ -144,21 +131,6 @@ const CARDS = [
     action: "link",
     buttonLabel: "설문 참여하기",
     url: "https://hosang78.github.io/vote/",
-  },
-  {
-    badge: "시연",
-    title: "해양수산도감",
-    date: "26.11.08",
-    desc: "주요 수산물 235종을 휴대폰에서 검색하고 쉬운 설명과 그림으로 찾아보는 웹 도감입니다.",
-    notes: [
-      "이름 검색, <b>그룹·해역 필터</b>, 종별 상세 설명과 <b>원문 보기</b>를 제공합니다.",
-      "자료 : 국립해양생물자원관 <b>해양생물종정보</b>(공공데이터포털, 26.11.07 기준)",
-      "<b>Claude</b>가 설명 정리와 앱 개발, <b>ChatGPT</b>가 도감 그림 235장을 만들었습니다.",
-      "설명·그림은 참고용이며 실제와 다를 수 있습니다.",
-    ],
-    action: "link",
-    buttonLabel: "도감 열기",
-    url: "https://hosang78.github.io/susan/",
   },
   {
     badge: "게임",
@@ -175,6 +147,34 @@ const CARDS = [
       { label: "바로 하기", action: "link", url: "files/games/wolchuk/suhyup_wolchuk_arcade.html" },
       { label: "다운로드", action: "download", url: "files/games/wolchuk/suhyup_wolchuk_arcade.html" },
     ],
+  },
+  {
+    badge: "시연",
+    title: "면세유 가격 비교",
+    date: "26.10.11",
+    desc: "오늘의 면세유 단가(경유·휘발유)를 입력하면 시장가격과 L당 비교해 보여주는 시연 페이지입니다.",
+    notes: [
+      "비교 대상 : <b>주유소 평균가</b>(오피넷), <b>국제 도매가·국제유가</b>, <b>환율</b>",
+      "공공 API 데이터를 <b>매시간 자동 수집</b>해 반영합니다.",
+    ],
+    action: "link",
+    buttonLabel: "시연 페이지 열기",
+    url: "https://hosang78.github.io/oil/",
+  },
+  {
+    badge: "시연",
+    title: "해양수산도감",
+    date: "26.11.08",
+    desc: "주요 수산물 235종을 휴대폰에서 검색하고 쉬운 설명과 그림으로 찾아보는 웹 도감입니다.",
+    notes: [
+      "이름 검색, <b>그룹·해역 필터</b>, 종별 상세 설명과 <b>원문 보기</b>를 제공합니다.",
+      "자료 : 국립해양생물자원관 <b>해양생물종정보</b>(공공데이터포털, 26.11.07 기준)",
+      "<b>Claude</b>가 설명 정리와 앱 개발, <b>ChatGPT</b>가 도감 그림 235장을 만들었습니다.",
+      "설명·그림은 참고용이며 실제와 다를 수 있습니다.",
+    ],
+    action: "link",
+    buttonLabel: "도감 열기",
+    url: "https://hosang78.github.io/susan/",
   },
 ];
 
